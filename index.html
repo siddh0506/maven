@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareMind AI - Hospital Chief Coordinator Intelligence Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="landing-page">
+  
+  <header class="landing-header">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <i data-lucide="activity"></i>
+      </div>
+      <span>CareMind AI</span>
+    </a>
+    <div style="font-size: 0.85rem; font-weight: 600; color: var(--primary-color); background: rgba(15, 76, 129, 0.05); padding: 8px 16px; border-radius: var(--border-radius-full); display: flex; align-items: center; gap: 8px;">
+      <span class="status-pulse-dot" style="width: 6px; height: 6px;"></span> Hospital Status: Live Coordination Active
+    </div>
+  </header>
+
+  <main class="hero-section">
+    <div class="hero-content">
+      <span class="hero-tag">Clinical Coordinator System</span>
+      <h1 class="hero-title">CareMind <span>AI</span></h1>
+      <h2 class="hero-subtitle">The AI Chief Coordinator of the Hospital</h2>
+      <p class="hero-desc">
+        A clinical intelligence platform engineered for modern hospitals. CareMind AI continuously monitors patient physiologies, predicts acute deterioration events, identifies early-stage sepsis pathways, and forecasts medical resource demands to optimize life-saving outcomes.
+      </p>
+      
+      <div class="hero-actions">
+        <button id="btn-launch-command" class="btn btn-primary">
+          <i data-lucide="layout-dashboard"></i>
+          Launch Command Center
+        </button>
+        <button id="btn-view-insights" class="btn btn-secondary">
+          <i data-lucide="brain-circuit"></i>
+          View AI Insights
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Animated Holographic Center -->
+      <div class="hologram-container">
+        <div class="hospital-mesh">
+          <div class="hero-pulse-center">
+            <i data-lucide="shield-alert" style="width: 24px; height: 24px;"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Cards with counters -->
+      <div class="floating-card c1 glass-card">
+        <div class="float-icon blue">
+          <i data-lucide="users"></i>
+        </div>
+        <div class="float-info">
+          <h4>Active AI Monitors</h4>
+          <p id="counter-monitors">142</p>
+        </div>
+      </div>
+
+      <div class="floating-card c2 glass-card">
+        <div class="float-icon teal">
+          <i data-lucide="shield-check"></i>
+        </div>
+        <div class="float-info">
+          <h4>Sepsis Averted</h4>
+          <p id="counter-sepsis">98.4%</p>
+        </div>
+      </div>
+
+      <div class="floating-card c3 glass-card">
+        <div class="float-icon red">
+          <i data-lucide="trending-down"></i>
+        </div>
+        <div class="float-info">
+          <h4>Response Buffer</h4>
+          <p id="counter-response">-22m</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================================================
+     ROLE-BASED LOGIN MODAL OVERLAY
+     ========================================================================== -->
+  <div class="modal-overlay" id="login-modal">
+    <div class="modal-content-card" style="max-width: 420px; border-radius: var(--border-radius-md);">
+      <div class="modal-header" style="padding: 20px 30px; background: linear-gradient(135deg, var(--primary-color) 0%, #082F52 100%);">
+        <div class="modal-header-info">
+          <h2 style="font-size: 1.25rem;">CareMind AI Access Portal</h2>
+          <p style="font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 2px;">Enter your credentials to proceed</p>
+        </div>
+        <button class="modal-close-btn" id="login-close-btn">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body" style="padding: 24px 30px; display: flex; flex-direction: column; gap: 20px;">
+        <!-- Toggling Tabs for Roles -->
+        <div class="filter-group" style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid rgba(15,76,129,0.1); padding-bottom: 12px; margin-bottom: 5px;">
+          <button class="filter-btn active" id="tab-login-nurse" style="border-radius: var(--border-radius-sm); border: none; font-size: 0.85rem; padding: 8px 12px;">Nurse / MD</button>
+          <button class="filter-btn" id="tab-login-patient" style="border-radius: var(--border-radius-sm); border: none; font-size: 0.85rem; padding: 8px 12px;">Patient Portal</button>
+        </div>
+        
+        <div id="login-form-area" style="display: flex; flex-direction: column; gap: 15px;">
+          <!-- ID field -->
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label id="lbl-login-id" style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color);">Nurse / Coordinator ID</label>
+            <input type="text" id="login-id-input" class="search-input" placeholder="e.g. N001" style="padding: 10px 14px; width: 100%;">
+          </div>
+          <!-- Password field -->
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color);">Security Password</label>
+            <input type="password" id="login-pass-input" class="search-input" placeholder="••••••••" style="padding: 10px 14px; width: 100%;">
+          </div>
+          <!-- Attendant Phone Number field (Patient-only, dynamically shown) -->
+          <div id="login-attender-group" style="display: none; flex-direction: column; gap: 6px;">
+            <label style="font-size: 0.8rem; font-weight: 700; color: var(--primary-color);">Attendant Phone Number</label>
+            <input type="tel" id="login-attender-input" class="search-input" placeholder="e.g. +1 (555) 019-9234" style="padding: 10px 14px; width: 100%;">
+          </div>
+          
+          <div id="login-error-msg" style="color: var(--alert-red); font-size: 0.75rem; font-weight: 600; display: none; text-align: center;">
+            Invalid ID or Password credentials. Please try again.
+          </div>
+          
+          <div style="font-size: 0.75rem; color: var(--text-secondary); background: #F1F5F9; padding: 12px; border-radius: 8px; border: 1px solid rgba(15, 76, 129, 0.05); line-height: 1.45;">
+            <strong>Demo Credentials:</strong><br>
+            • Nurse: ID <code style="font-weight:700; color: var(--primary-color);">N001</code> / Password <code style="font-weight:700; color: var(--primary-color);">nurse123</code><br>
+            • Patient: ID <code style="font-weight:700; color: var(--secondary-color);">P001</code> / Password <code style="font-weight:700; color: var(--secondary-color);">demo123</code>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding: 16px 30px; display: flex; justify-content: flex-end; gap: 10px; border-top: 1px solid rgba(15, 76, 129, 0.05);">
+        <button class="btn btn-secondary" id="login-cancel-btn" style="padding: 10px 20px;">Cancel</button>
+        <button class="btn btn-primary" id="login-submit-btn" style="padding: 10px 20px;">Authenticate Access</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/landing.js"></script>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>
